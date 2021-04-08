@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
+   
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+    <script src="//cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+    <title>AJAX 3 - External API</title>
+</head>
+<body class='bg-dark text-light'>
+    <h1> </h1>
+    <br>
+    <button id ='button'>Load GitHub Users</button>
+    <br> <br>
+    <div>
+        <table>
+            <tr>
+                <th class='pr-1'> ID </th>
+                <th class='pl-2'> Username </th>
+                <th class='pl-4'> Type </th>
+                <th class='pl-5'> URL  </th>
+            </tr>
+            <tr id='display'>
+
+            </tr>
+        </table>
+        <table id='tables'>
+
+        </table>
+    </div>
+
+    <script>
+        document.getElementById('button').addEventListener('click', getUsers)
+        // getUsers function
+        function getUsers() {
+        //    console.log('clicked!')
+            var output ='';
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET','https://api.github.com/users', true);
+            xhr.onload = function(){
+            if (xhr.status == 200) {
+                var resp = JSON.parse(this.responseText);
+                resp.forEach(function(data){
+                    output +=
+                    '<tr>'+
+                        '<td>'+data.id+ '</td>'+ 
+                        '<td class="pl-2">'+data.login+ '</td>'+
+                        '<td class="pl-2">'+data.type+ '</td>'+
+                        '<td class="pl-1">'+data.url+ '</td>'+
+                    '</tr>'
+                    document.getElementById('tables').innerHTML = output;
+
+                })
+                // console.log(output);
+                }
+            }
+            xhr.send();
+        }
+    $('tables').DataTable();
+    </script>
+</body>
+</html>
+
+
+<!-- API URL = https://api.github.com/users -->
+
+<!-- last minute 40.41 AJAX Course -->
