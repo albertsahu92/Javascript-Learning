@@ -19,27 +19,30 @@
     <button id ='button'>Load GitHub Users</button>
     <br> <br>
     <div>
-        <table>
-            <tr>
-                <th class='pr-1'> ID </th>
-                <th class='pl-2'> Username </th>
-                <th class='pl-4'> Type </th>
-                <th class='pl-5'> URL  </th>
-            </tr>
-            <tr id='display'>
+        <table id = 'tables' class='pr-3 display'>
+            <thead>  <!-- added thead and tbody to divide the tables -->
+                <tr>
+                    <th class="border border-light pr-1 pl-1">ID </th>
+                    <th class="border border-light pr-4 pl-5">Username</th>
+                    <th class="border border-light pl-4 pr-3">Type</th>
+                    <th class="border border-light pl-1">URL </th>
+                 </tr>
+            </thead>
+            <tbody id ="displaytbl"> <!-- tbody to divide the tables so the output
+                                            can be displayed here following the header alignment -->
+                <tr>
 
-            </tr>
+                </tr>
+            </tbody>
         </table>
-        <table id='tables'>
-
-        </table>
+        <!-- deleted the previous table body, because the header and the body alignment
+             is unbalanced -->
     </div>
 
     <script>
         document.getElementById('button').addEventListener('click', getUsers)
         // getUsers function
         function getUsers() {
-        //    console.log('clicked!')
             var output ='';
             var xhr = new XMLHttpRequest();
             xhr.open('GET','https://api.github.com/users', true);
@@ -49,20 +52,20 @@
                 resp.forEach(function(data){
                     output +=
                     '<tr>'+
-                        '<td>'+data.id+ '</td>'+ 
-                        '<td class="pl-2">'+data.login+ '</td>'+
-                        '<td class="pl-2">'+data.type+ '</td>'+
-                        '<td class="pl-1">'+data.url+ '</td>'+
+                        '<td class="border border-light pr-1 pl-1">'+data.id+ '</td>'+ 
+                        '<td class="border border-light pr-4 pl-5">'+data.login+ '</td>'+
+                        '<td class="border border-light pl-4 pr-3">'+data.type+ '</td>'+
+                        '<td class="border border-light pl-1">'+data.url+ '</td>'+
                     '</tr>'
-                    document.getElementById('tables').innerHTML = output;
+                    document.getElementById('displaytbl').innerHTML = output;
 
                 })
-                // console.log(output);
+            
                 }
             }
             xhr.send();
         }
-    $('tables').DataTable();
+    $('displaytbl').DataTable();
     </script>
 </body>
 </html>
@@ -71,3 +74,10 @@
 <!-- API URL = https://api.github.com/users -->
 
 <!-- last minute 40.41 AJAX Course -->
+
+<!-- previous change
+                    <th class='pr-2 pl-1'> ID </th>
+                    <th class='pr-5 pl-5'> Username </th>
+                    <th class='pr-5 pl-5 '> Type </th>
+                    <th class='pr-5 pl-5'> URL  </th>
+-->
