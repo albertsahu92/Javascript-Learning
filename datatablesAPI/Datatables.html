@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+    <script src="//cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+    <title>Albion Data</title>
+</head>
+
+<body>
+    <section class="content">
+        <div class="card card-primary card-outline">
+            <div class="card-header">
+                <h3 class="card-title"><span class="badge badge-warning">Albion Player</span></h3>
+            </div>
+        </div>
+        <div class="card-body">
+            <table id='tables' class="table table-bordered table-striped table-sm">
+                <thead class='bg-dark text-light'>
+                    <tr>
+                        <th> Name </th>
+                        <th> Username </th>
+                        <th> Type </th>
+                        <th> URL </th>
+                    </tr>
+                </thead>
+                <tbody class=></tbody>
+            </table>
+        </div>
+    </section>
+    <script>
+        inittable()
+
+        function inittable() {
+            // console.log("d");
+            table = $('#tables').DataTable({
+                "ajax": {
+                    "url": "https://api.github.com/users",
+                    "type": "GET",
+                    "dataSrc": "",
+                    "dataType": "json",
+                },
+                "columns": [{
+                        "data": "Name"
+                    },
+                    {
+                        "data": "login"
+                    },
+                    {
+                        "data": "type"
+                    },
+                    {
+                        "data": "url"
+                    },
+                ]
+            });
+        }
+    </script>
+</body>
+
+</html>
