@@ -7,6 +7,7 @@ const searchStates = async searchText => {
     const states = await res.json();
 
     // get matches to text input
+    // gi = global insensitive case
     let matches = states.filter(state => {
         const regex = new RegExp(`^${searchText}`, 'gi');
         return state.name.match(regex) || state.abbr.match(regex)
