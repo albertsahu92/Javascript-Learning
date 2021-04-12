@@ -11,23 +11,23 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
     <script src="//cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
-    <title>Albion Data</title>
+    <title>Sample Data</title>
 </head>
 
 <body>
     <section class="content">
         <div class="card card-primary card-outline">
             <div class="card-header">
-                <h3 class="card-title"><span class="badge badge-warning">Albion Player</span></h3>
+                <h3 class="card-title"><span class="badge badge-secondary">Photos</span></h3>
             </div>
         </div>
         <div class="card-body">
             <table id='tables' class="table table-bordered table-striped table-sm">
                 <thead class='bg-dark text-light'>
                     <tr>
-                        <th> Name </th>
-                        <th> Username </th>
-                        <th> Type </th>
+                        <th> Album ID </th>
+                        <th> ID </th>
+                        <th> Title </th>
                         <th> URL </th>
                     </tr>
                 </thead>
@@ -42,19 +42,19 @@
             // console.log("d");
             table = $('#tables').DataTable({
                 "ajax": {
-                    "url": "https://api.github.com/users",
+                    "url": "https://jsonplaceholder.typicode.com/photos",
                     "type": "GET",
                     "dataSrc": "",
                     "dataType": "json",
                 },
                 "columns": [{
-                        "data": "Name"
+                        "data": "albumId"
                     },
                     {
-                        "data": "login"
+                        "data": "id"
                     },
                     {
-                        "data": "type"
+                        "data": "title"
                     },
                     {
                         "data": "url"
