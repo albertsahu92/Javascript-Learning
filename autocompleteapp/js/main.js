@@ -12,7 +12,7 @@ const searchStates = async searchText => {
         const regex = new RegExp(`^${searchText}`, 'gi');
         return state.name.match(regex) || state.abbr.match(regex)
     });
-
+    // clear the result when input is empty
     if(searchText.length == 0) {
         matches = ''
         matchList.innerHTML =''
